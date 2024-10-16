@@ -1,9 +1,9 @@
 {
-  "name": "claude-dev",
-  "displayName": "Cline (prev. Claude Dev)",
+  "name": "xamun-dev",
+  "displayName": "xamun-dev",
   "description": "Autonomous coding agent right in your IDE, capable of creating/editing files, executing commands, and more with your permission every step of the way.",
-  "version": "2.0.7",
-  "icon": "assets/icons/icon.png",
+  "version": "2.0.0",
+  "icon": "assets/icons/x-128.png",
   "galleryBanner": {
     "color": "#617A91",
     "theme": "dark"
@@ -12,15 +12,15 @@
     "vscode": "^1.84.0"
   },
   "author": {
-    "name": "Cline Bot Inc."
+    "name": "BlastAsia Inc"
   },
   "license": "Apache-2.0",
-  "publisher": "saoudrizwan",
+  "publisher": "BlastAsia",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cline/cline"
+    "url": "https://github.com/StMLefebvre/xamun-dev2"
   },
-  "homepage": "https://cline.bot",
+  "homepage": "https://xamun.dev",
   "categories": [
     "AI",
     "Chat",
@@ -30,8 +30,7 @@
     "Testing"
   ],
   "keywords": [
-    "cline",
-    "claude",
+    "xamun",
     "dev",
     "openrouter",
     "coding",
@@ -48,69 +47,79 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "claude-dev-ActivityBar",
-          "title": "Cline",
+          "id": "xamun-dev-ActivityBar",
+          "title": "Xamun Dev",
           "icon": "$(robot)"
         }
       ]
     },
     "views": {
-      "claude-dev-ActivityBar": [
+      "xamun-dev-ActivityBar": [
         {
           "type": "webview",
-          "id": "claude-dev.SidebarProvider",
+          "id": "xamun-dev.SidebarProvider",
           "name": ""
         }
       ]
     },
     "commands": [
       {
-        "command": "cline.plusButtonClicked",
+        "command": "xamun-dev.plusButtonClicked",
         "title": "New Task",
         "icon": "$(add)"
       },
       {
-        "command": "cline.historyButtonClicked",
+        "command": "xamun-dev.historyButtonClicked",
         "title": "History",
         "icon": "$(history)"
       },
       {
-        "command": "cline.popoutButtonClicked",
+        "command": "xamun-dev.popoutButtonClicked",
         "title": "Open in Editor",
         "icon": "$(link-external)"
       },
       {
-        "command": "cline.settingsButtonClicked",
+        "command": "xamun-dev.settingsButtonClicked",
         "title": "Settings",
         "icon": "$(settings-gear)"
       },
       {
-        "command": "cline.openInNewTab",
+        "command": "xamun-dev.chatButtonClicked",
+        "title": "Chat",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "xamun-dev.openInNewTab",
         "title": "Open In New Tab",
-        "category": "Cline"
+        "category": "Xamun Dev"
       }
     ],
     "menus": {
       "view/title": [
         {
-          "command": "cline.plusButtonClicked",
+          "command": "xamun-dev.plusButtonClicked",
           "group": "navigation@1",
-          "when": "view == claude-dev.SidebarProvider"
+          "when": "view == xamun-dev.SidebarProvider"
         },
         {
-          "command": "cline.historyButtonClicked",
+          "command": "xamun-dev.historyButtonClicked",
           "group": "navigation@2",
-          "when": "view == claude-dev.SidebarProvider"
+          "when": "view == xamun-dev.SidebarProvider"
         },
         {
-          "command": "cline.popoutButtonClicked",
+          "command": "xamun-dev.popoutButtonClicked",
           "group": "navigation@3",
-          "when": "view == claude-dev.SidebarProvider"
+          "when": "view == xamun-dev.SidebarProvider"
         },
         {
-          "command": "cline.settingsButtonClicked",
+          "command": "xamun-dev.settingsButtonClicked",
           "group": "navigation@4",
-          "when": "view == claude-dev.SidebarProvider"
+          "when": "view == xamun-dev.SidebarProvider"
+        },
+        {
+          "command": "xamun-dev.chatButtonClicked",
+          "group": "navigation@5",
+          "when": "view == xamun-dev.SidebarProvider"
         }
       ]
     }
