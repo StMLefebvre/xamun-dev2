@@ -100,7 +100,7 @@ export function activate(context: vscode.ExtensionContext) {
 		})
 	)
 
-	// New command: Ask xamun...
+	// Updated command: Ask xamun...
 	context.subscriptions.push(
 		vscode.commands.registerCommand("xamun-dev.askXamun", async (uri: vscode.Uri) => {
 			outputChannel.appendLine("Ask xamun... command triggered")
@@ -110,15 +110,13 @@ export function activate(context: vscode.ExtensionContext) {
 			// Open the Cline sidebar if it's not already visible
 			await vscode.commands.executeCommand("xamun-dev.SidebarProvider.focus")
 			
-			// Clear the current task and start a new one
-			await sidebarProvider.clearTask()
-			await sidebarProvider.postStateToWebview()
-			
-			// Post a message to the webview to start a new task with the selected file
-			await sidebarProvider.postMessageToWebview({
+			// Open the prompt library page with the selected file path
+			sidebarProvider.postMessageToWebview({
 				type: "action",
-				action: "historyButtonClicked",
-				//task: `Analyze the file ${relativePath} and provide insights or suggestions for improvement.`
+				action: "promptLibraryButtonClicked",
+				context: {
+					filePath: relativePath
+				}
 			})
 		})
 	)

@@ -15,6 +15,7 @@ const AppContent = () => {
 	const [showHistory, setShowHistory] = useState(false)
 	const [showPromptLibrary, setShowPromptLibrary] = useState(false)
 	const [showAnnouncement, setShowAnnouncement] = useState(false)
+	const [selectedFilePath, setSelectedFilePath] = useState<string | undefined>(undefined)
 
 	const handleMessage = useCallback((e: MessageEvent) => {
 		const message: ExtensionMessage = e.data
@@ -35,6 +36,7 @@ const AppContent = () => {
 						setShowSettings(false)
 						setShowHistory(false)
 						setShowPromptLibrary(true)
+						setSelectedFilePath(message.context?.filePath)
 						break
 					case "chatButtonClicked":
 						setShowSettings(false)
@@ -77,6 +79,7 @@ const AppContent = () => {
 						<PromptLibraryView
 							onDone={() => setShowPromptLibrary(false)}
 							onUsePrompt={handleUsePrompt}
+							selectedFilePath={selectedFilePath}
 						/>
 					)}
 					{/* Do not conditionally load ChatView, it's expensive and there's state we don't want to lose (user input, disableInput, askResponse promise, etc.) */}

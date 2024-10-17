@@ -24,6 +24,10 @@ export interface ExtensionMessage {
 	filePaths?: string[]
 	partialMessage?: ClineMessage
 	openRouterModels?: Record<string, ModelInfo>
+	context?: {
+		filePath?: string
+		[key: string]: any
+	}
 }
 
 export interface ExtensionState {
