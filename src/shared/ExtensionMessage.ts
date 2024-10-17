@@ -16,7 +16,7 @@ export interface ExtensionMessage {
 		| "partialMessage"
 		| "openRouterModels"
 	text?: string
-	action?: "chatButtonClicked" | "settingsButtonClicked" | "historyButtonClicked" | "didBecomeVisible"
+	action?: "chatButtonClicked" | "settingsButtonClicked" | "historyButtonClicked" | "promptLibraryButtonClicked" | "didBecomeVisible"
 	invoke?: "sendMessage" | "primaryButtonClick" | "secondaryButtonClick"
 	state?: ExtensionState
 	images?: string[]

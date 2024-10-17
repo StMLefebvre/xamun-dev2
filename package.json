@@ -41,7 +41,9 @@
     "ai",
     "llama"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:xamun-dev.askXamun"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "viewsContainers": {
@@ -89,8 +91,18 @@
         "icon": "$(comment-discussion)"
       },
       {
+        "command": "xamun-dev.promptLibraryButtonClicked",
+        "title": "Prompt Library",
+        "icon": "$(library)"
+      },
+      {
         "command": "xamun-dev.openInNewTab",
         "title": "Open In New Tab",
+        "category": "Xamun Dev"
+      },
+      {
+        "command": "xamun-dev.askXamun",
+        "title": "Ask xamun...",
         "category": "Xamun Dev"
       }
     ],
@@ -120,6 +132,17 @@
           "command": "xamun-dev.chatButtonClicked",
           "group": "navigation@5",
           "when": "view == xamun-dev.SidebarProvider"
+        },
+        {
+          "command": "xamun-dev.promptLibraryButtonClicked",
+          "group": "navigation@6",
+          "when": "view == xamun-dev.SidebarProvider"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "xamun-dev.askXamun",
+          "group": "navigation"
         }
       ]
     }

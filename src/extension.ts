@@ -92,6 +92,37 @@ export function activate(context: vscode.ExtensionContext) {
 		})
 	)
 
+	// New command: Prompt Library
+	context.subscriptions.push(
+		vscode.commands.registerCommand("xamun-dev.promptLibraryButtonClicked", () => {
+			outputChannel.appendLine("Prompt Library button Clicked")
+			sidebarProvider.postMessageToWebview({ type: "action", action: "promptLibraryButtonClicked" })
+		})
+	)
+
+	// New command: Ask xamun...
+	context.subscriptions.push(
+		vscode.commands.registerCommand("xamun-dev.askXamun", async (uri: vscode.Uri) => {
+			outputChannel.appendLine("Ask xamun... command triggered")
+			const filePath = uri.fsPath
+			const relativePath = vscode.workspace.asRelativePath(filePath)
+			
+			// Open the Cline sidebar if it's not already visible
+			await vscode.commands.executeCommand("xamun-dev.SidebarProvider.focus")
+			
+			// Clear the current task and start a new one
+			await sidebarProvider.clearTask()
+			await sidebarProvider.postStateToWebview()
+			
+			// Post a message to the webview to start a new task with the selected file
+			await sidebarProvider.postMessageToWebview({
+				type: "action",
+				action: "historyButtonClicked",
+				//task: `Analyze the file ${relativePath} and provide insights or suggestions for improvement.`
+			})
+		})
+	)
+
 	/*
 	We use the text document content provider API to show the left side for diff view by creating a virtual document for the original content. This makes it readonly so users know to edit the right side if they want to keep their changes.
 
