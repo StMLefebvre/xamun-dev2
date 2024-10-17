@@ -17,10 +17,12 @@ interface ExtensionStateContextType extends ExtensionState {
 	theme: any
 	openRouterModels: Record<string, ModelInfo>
 	filePaths: string[]
+	isDebugMode: boolean
 	setApiConfiguration: (config: ApiConfiguration) => void
 	setCustomInstructions: (value?: string) => void
 	setAlwaysAllowReadOnly: (value: boolean) => void
 	setShowAnnouncement: (value: boolean) => void
+	setIsDebugMode: (value: boolean) => void
 }
 
 const ExtensionStateContext = createContext<ExtensionStateContextType | undefined>(undefined)
@@ -31,6 +33,7 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 		clineMessages: [],
 		taskHistory: [],
 		shouldShowAnnouncement: false,
+		isDebugMode: false,
 	})
 	const [didHydrateState, setDidHydrateState] = useState(false)
 	const [showWelcome, setShowWelcome] = useState(false)
@@ -44,7 +47,10 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 		const message: ExtensionMessage = event.data
 		switch (message.type) {
 			case "state": {
-				setState(message.state!)
+				setState(prevState => ({
+					...message.state!,
+					isDebugMode: message.state?.isDebugMode ?? prevState.isDebugMode ?? false
+				}))
 				const config = message.state?.apiConfiguration
 				const hasKey = config
 					? [
@@ -110,10 +116,15 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 		theme,
 		openRouterModels,
 		filePaths,
+		isDebugMode: state.isDebugMode ?? false,
 		setApiConfiguration: (value) => setState((prevState) => ({ ...prevState, apiConfiguration: value })),
 		setCustomInstructions: (value) => setState((prevState) => ({ ...prevState, customInstructions: value })),
 		setAlwaysAllowReadOnly: (value) => setState((prevState) => ({ ...prevState, alwaysAllowReadOnly: value })),
 		setShowAnnouncement: (value) => setState((prevState) => ({ ...prevState, shouldShowAnnouncement: value })),
+		setIsDebugMode: (value) => {
+			setState((prevState) => ({ ...prevState, isDebugMode: value }))
+			vscode.postMessage({ type: "setIsDebugMode", value })
+		},
 	}
 
 	return <ExtensionStateContext.Provider value={contextValue}>{children}</ExtensionStateContext.Provider>

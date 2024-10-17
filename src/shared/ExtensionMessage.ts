@@ -39,6 +39,7 @@ export interface ExtensionState {
 	clineMessages: ClineMessage[]
 	taskHistory: HistoryItem[]
 	shouldShowAnnouncement: boolean
+	isDebugMode?: boolean
 }
 
 export interface ClineMessage {
