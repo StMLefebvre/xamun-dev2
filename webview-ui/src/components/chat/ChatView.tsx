@@ -23,11 +23,13 @@ interface ChatViewProps {
 	showAnnouncement: boolean
 	hideAnnouncement: () => void
 	showHistoryView: () => void
+	promptContent?: string
+	setPromptContent: React.Dispatch<React.SetStateAction<string | undefined>>
 }
 
 export const MAX_IMAGES_PER_MESSAGE = 20 // Anthropic limits to 20 images
 
-const ChatView = ({ isHidden, showAnnouncement, hideAnnouncement, showHistoryView }: ChatViewProps) => {
+const ChatView = ({ isHidden, showAnnouncement, hideAnnouncement, showHistoryView, promptContent, setPromptContent }: ChatViewProps) => {
 	const { version, clineMessages: messages, taskHistory, apiConfiguration } = useExtensionState()
 
 	//const task = messages.length > 0 ? (messages[0].say === "task" ? messages[0] : undefined) : undefined) : undefined
@@ -389,6 +391,13 @@ const ChatView = ({ isHidden, showAnnouncement, hideAnnouncement, showHistoryVie
 			clearTimeout(timer)
 		}
 	}, [isHidden, textAreaDisabled, enableButtons])
+
+	useEffect(() => {
+		if (promptContent) {
+			setInputValue(promptContent)
+			setPromptContent(undefined)
+		}
+	}, [promptContent, setPromptContent])
 
 	const visibleMessages = useMemo(() => {
 		return modifiedMessages.filter((message) => {

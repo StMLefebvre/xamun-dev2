@@ -16,6 +16,7 @@ const AppContent = () => {
 	const [showPromptLibrary, setShowPromptLibrary] = useState(false)
 	const [showAnnouncement, setShowAnnouncement] = useState(false)
 	const [selectedFilePath, setSelectedFilePath] = useState<string | undefined>(undefined)
+	const [promptContent, setPromptContent] = useState<string | undefined>(undefined)
 
 	const handleMessage = useCallback((e: MessageEvent) => {
 		const message: ExtensionMessage = e.data
@@ -58,9 +59,10 @@ const AppContent = () => {
 	}, [shouldShowAnnouncement])
 
 	const handleUsePrompt = useCallback((content: string) => {
-		console.log("Using prompt:", content)
-		// TODO: Implement the actual logic for using the prompt
+		setPromptContent(content)
 		setShowPromptLibrary(false)
+		setShowSettings(false)
+		setShowHistory(false)
 	}, [])
 
 	if (!didHydrateState) {
@@ -94,6 +96,8 @@ const AppContent = () => {
 						hideAnnouncement={() => {
 							setShowAnnouncement(false)
 						}}
+						promptContent={promptContent}
+						setPromptContent={setPromptContent}
 					/>
 				</>
 			)}

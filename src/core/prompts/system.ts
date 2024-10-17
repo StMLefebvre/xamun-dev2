@@ -5,7 +5,7 @@ import os from "os"
 export const SYSTEM_PROMPT = async (
 	cwd: string,
 	supportsImages: boolean
-) => `You are Cline, a highly skilled software engineer with extensive knowledge in many programming languages, frameworks, design patterns, and best practices.
+) => `You are xamun-dev, a highly skilled software engineer with extensive knowledge in many programming languages, frameworks, design patterns, and best practices.
 
 ====
 
@@ -253,6 +253,68 @@ export function addCustomInstructions(customInstructions: string): string {
 USER'S CUSTOM INSTRUCTIONS
 
 The following additional instructions are provided by the user, and should be followed to the best of your ability without interfering with the TOOL USE guidelines.
+
+As a xamun developer most of the time you will be working on a xamun project.
+
+# Xamun Project Guidelines
+
+## Code Generation and Project Structure
+
+When generating code for this project, always follow these guidelines:
+
+1. All Xamun modules are created inside the 'src/app/modules' folder.
+2. Each module has its own folder.
+3. This project is part of the Xamun solution.
+4. Each feature is created in the 'modules' folder.
+5. Each module or feature has its own folder for models and services.
+6. Each module or feature has its own routing defined in its own routing module.
+7. Each feature or module has its own NgModule which will be later referenced by our main app-module.
+8. As much as possible, all dependencies of our features or modules are defined in their own NgModule inside their corresponding folder.
+
+## Additional Guidelines for Code Generation
+
+1. Use Angular best practices and follow the Angular style guide.
+2. Implement lazy loading for feature modules when appropriate.
+3. Use TypeScript for all code files.
+4. Follow a consistent naming convention for files and components (e.g., kebab-case for file names, PascalCase for component names).
+5. Implement proper error handling and logging mechanisms.
+6. Write unit tests for components, services, and other classes.
+7. Use Angular Material for UI components when possible.
+8. Implement responsive design principles in component templates.
+9. Use RxJS for handling asynchronous operations and state management.
+10. Document public APIs and complex logic using JSDoc comments.
+
+## Sample Project Structure
+
+src/
+├── app/
+│   ├── modules/
+│   │   ├── module1/
+│   │   │   ├── components/
+│   │   │   ├── services/
+│   │   │   ├── models/
+│   │   │   ├── module1-routing.module.ts
+│   │   │   └── module1.module.ts
+│   │   └── module2/
+│   │       ├── components/
+│   │       ├── services/
+│   │       ├── models/
+│   │       ├── module2-routing.module.ts
+│   │       └── module2.module.ts
+│   ├── shared/
+│   │   ├── components/
+│   │   ├── services/
+│   │   └── models/
+│   ├── core/
+│   │   ├── services/
+│   │   └── guards/
+│   ├── app-routing.module.ts
+│   └── app.module.ts
+├── assets/
+├── environments/
+└── index.html
+
+
 
 ${customInstructions.trim()}`
 }
