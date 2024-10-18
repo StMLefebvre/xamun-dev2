@@ -17,7 +17,7 @@ export interface ExtensionMessage {
 		| "openRouterModels"
 	text?: string
 	action?: "chatButtonClicked" | "settingsButtonClicked" | "historyButtonClicked" | "promptLibraryButtonClicked" | "didBecomeVisible"
-	invoke?: "sendMessage" | "primaryButtonClick" | "secondaryButtonClick"
+	invoke?: "sendMessage" | "primaryButtonClick" | "secondaryButtonClick" | "submitPrompt"
 	state?: ExtensionState
 	images?: string[]
 	ollamaModels?: string[]

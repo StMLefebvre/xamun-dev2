@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { xamun } from '../../utils/xamunHelper';
+import { usePromptSubmission } from '../../hooks/usePromptSubmission';
 
 interface Prompt {
   id: string;
@@ -16,6 +17,7 @@ interface PromptLibraryViewProps {
 
 const PromptLibraryView: React.FC<PromptLibraryViewProps> = ({ onDone, isTab = false, selectedFilePath, onUsePrompt }) => {
   const [additionalText, setAdditionalText] = useState('');
+  const { handlePromptUse } = usePromptSubmission();
 
   // This is a placeholder. We'll need to implement the actual fetching of prompts later.
   const predefinedPrompts: Prompt[] = [
@@ -158,7 +160,6 @@ const PromptLibraryView: React.FC<PromptLibraryViewProps> = ({ onDone, isTab = f
   };
 
   const handleUsePrompt = (content: string) => {
-
     let thisPath = xamun.windowsToLinuxPath(selectedFilePath || '');
     content = content.replace('__path__', thisPath)
     content = content.replace('__addtionalText__', additionalText)
@@ -166,13 +167,12 @@ const PromptLibraryView: React.FC<PromptLibraryViewProps> = ({ onDone, isTab = f
     //repeat
     content = content.replace('__path__', thisPath)
     
-
-    const fileContext = `${thisPath}` //selectedFilePath ? `\n\nFile: ${thisPath}` : '';
+    const fileContext = `${thisPath}`
     const combinedContent = `${content}\n${fileContext}`;
 
     console.log(combinedContent);
 
-    onUsePrompt(combinedContent);
+    handlePromptUse(combinedContent, onUsePrompt);
     if (!isTab) {
       onDone();
     }
