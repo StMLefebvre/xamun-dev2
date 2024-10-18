@@ -1,8 +1,8 @@
 import * as vscode from "vscode"
-import { ClineProvider } from "../core/webview/ClineProvider"
+import { XamunProvider } from "../core/webview/XamunProvider"
 import { ClineAPI } from "./cline"
 
-export function createClineAPI(outputChannel: vscode.OutputChannel, sidebarProvider: ClineProvider): ClineAPI {
+export function createClineAPI(outputChannel: vscode.OutputChannel, sidebarProvider: XamunProvider): ClineAPI {
 	const api: ClineAPI = {
 		setCustomInstructions: async (value: string) => {
 			await sidebarProvider.updateCustomInstructions(value)
@@ -10,7 +10,8 @@ export function createClineAPI(outputChannel: vscode.OutputChannel, sidebarProvi
 		},
 
 		getCustomInstructions: async () => {
-			return (await sidebarProvider.getGlobalState("customInstructions")) as string | undefined
+			const state = await sidebarProvider.getStateToPostToWebview()
+			return state.customInstructions
 		},
 
 		startNewTask: async (task?: string, images?: string[]) => {

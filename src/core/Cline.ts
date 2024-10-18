@@ -40,7 +40,8 @@ import { AssistantMessageContent, parseAssistantMessage, ToolParamName, ToolUseN
 import { formatResponse } from "./prompts/responses"
 import { addCustomInstructions, SYSTEM_PROMPT } from "./prompts/system"
 import { truncateHalfConversation } from "./sliding-window"
-import { ClineProvider, GlobalFileNames } from "./webview/ClineProvider"
+//import { ClineProvider, GlobalFileNames } from "./webview/ClineProvider"
+import { XamunProvider, GlobalFileNames } from "./webview/XamunProvider"
 
 const cwd =
 	vscode.workspace.workspaceFolders?.map((folder) => folder.uri.fsPath).at(0) ?? path.join(os.homedir(), "Desktop") // may or may not exist but fs checking existence would immediately ask for permission which would be bad UX, need to come up with a better solution
@@ -65,7 +66,7 @@ export class Cline {
 	private askResponseImages?: string[]
 	private lastMessageTs?: number
 	private consecutiveMistakeCount: number = 0
-	private providerRef: WeakRef<ClineProvider>
+	private providerRef: WeakRef<XamunProvider>
 	private abort: boolean = false
 	didFinishAborting = false
 	private diffViewProvider: DiffViewProvider
@@ -81,8 +82,7 @@ export class Cline {
 	private didCompleteReadingStream = false
 
 	constructor(
-		//provider: ClineProvider,
-		provider: any,
+		provider: XamunProvider,
 		apiConfiguration: ApiConfiguration,
 		customInstructions?: string,
 		alwaysAllowReadOnly?: boolean,
