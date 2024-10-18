@@ -81,7 +81,8 @@ export class Cline {
 	private didCompleteReadingStream = false
 
 	constructor(
-		provider: ClineProvider,
+		//provider: ClineProvider,
+		provider: any,
 		apiConfiguration: ApiConfiguration,
 		customInstructions?: string,
 		alwaysAllowReadOnly?: boolean,

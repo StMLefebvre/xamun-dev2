@@ -7,11 +7,18 @@ const cwd = vscode.workspace.workspaceFolders?.map((folder) => folder.uri.fsPath
 
 // Note: this is not a drop-in replacement for listFiles at the start of tasks, since that will be done for Desktops when there is no workspace selected
 class WorkspaceTracker {
-	private providerRef: WeakRef<ClineProvider>
+	//private providerRef: WeakRef<ClineProvider>
+	private providerRef: WeakRef<any>
+	
 	private disposables: vscode.Disposable[] = []
 	private filePaths: Set<string> = new Set()
 
-	constructor(provider: ClineProvider) {
+	// constructor(provider: ClineProvider) {
+	// 	this.providerRef = new WeakRef(provider)
+	// 	this.registerListeners()
+	// }
+
+	constructor(provider: any) {
 		this.providerRef = new WeakRef(provider)
 		this.registerListeners()
 	}
