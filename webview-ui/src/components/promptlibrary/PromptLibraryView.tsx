@@ -86,17 +86,18 @@ const PromptLibraryView: React.FC<PromptLibraryViewProps> = ({ onDone, isTab = f
   ];
 
   const containerStyle: React.CSSProperties = {
-    padding: '20px',
     height: isTab ? '100vh' : 'auto',
     overflow: 'auto',
     backgroundColor: '#1e1e1e', // Dark background
     color: '#ffffff', // Light text
+    width: '100%', // Ensure container takes full width
   };
 
   const headerStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     marginBottom: '20px',
+    padding: '5px', // Add padding to the header
   };
 
   const headerTopStyle: React.CSSProperties = {
@@ -115,14 +116,18 @@ const PromptLibraryView: React.FC<PromptLibraryViewProps> = ({ onDone, isTab = f
   const listStyle: React.CSSProperties = {
     listStyle: 'none',
     padding: 0,
+    margin: 0, // Remove any default margin
+    width: '100%', // Ensure list takes full width
   };
 
   const listItemStyle: React.CSSProperties = {
     backgroundColor: '#2d2d2d', // Darker item background
     border: '1px solid #3e3e3e', // Darker border
     borderRadius: '4px',
-    padding: '10px',
+    padding: '5px', // Set padding to 5px as requested
     marginBottom: '10px',
+    width: '100%', // Ensure list item takes full width
+    boxSizing: 'border-box', // Include padding in the width calculation
   };
 
   const buttonStyle = (disabled: boolean): React.CSSProperties => ({
@@ -136,13 +141,11 @@ const PromptLibraryView: React.FC<PromptLibraryViewProps> = ({ onDone, isTab = f
   });
 
   const titleStyle: React.CSSProperties = {
-    //color: '#d0ced2', // Light xamun for titles
     color: '#b278ec', // Light xamun for titles
   };
 
   const libTitleStyle: React.CSSProperties = {
     color: '#d0ced2', // Light xamun for titles
-    //color: '#b278ec', // Light xamun for titles
   };
 
   const contentStyle: React.CSSProperties = {
@@ -157,6 +160,7 @@ const PromptLibraryView: React.FC<PromptLibraryViewProps> = ({ onDone, isTab = f
     color: '#ffffff',
     border: '1px solid #555555',
     borderRadius: '4px',
+    boxSizing: 'border-box', // Include padding in the width calculation
   };
 
   const handleUsePrompt = (content: string) => {
@@ -230,13 +234,6 @@ const PromptLibraryView: React.FC<PromptLibraryViewProps> = ({ onDone, isTab = f
           </div>
         )}
       </div>
-      {/* <input
-        type="text"
-        placeholder="Enter additional context here..."
-        value={additionalText}
-        onChange={(e) => setAdditionalText(e.target.value)}
-        style={inputStyle}
-      /> */}
       <ul style={listStyle}>
         {predefinedPrompts.map((prompt) => (
           <li key={prompt.id} style={listItemStyle}>

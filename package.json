@@ -51,7 +51,7 @@
         {
           "id": "xamun-dev-ActivityBar",
           "title": "Xamun Dev",
-          "icon": "$(robot)"
+          "icon": "assets/icons/x-128.png"
         }
       ]
     },
@@ -114,17 +114,17 @@
           "when": "view == xamun-dev.SidebarProvider"
         },
         {
-          "command": "xamun-dev.popoutButtonClicked",
+          "command": "xamun-dev.settingsButtonClicked",
           "group": "navigation@3",
           "when": "view == xamun-dev.SidebarProvider"
         },
         {
-          "command": "xamun-dev.settingsButtonClicked",
+          "command": "xamun-dev.promptLibraryButtonClicked",
           "group": "navigation@4",
           "when": "view == xamun-dev.SidebarProvider"
         },
         {
-          "command": "xamun-dev.promptLibraryButtonClicked",
+          "command": "xamun-dev.popoutButtonClicked",
           "group": "navigation@5",
           "when": "view == xamun-dev.SidebarProvider"
         }
