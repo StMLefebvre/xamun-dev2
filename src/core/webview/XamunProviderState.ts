@@ -29,6 +29,7 @@ type GlobalStateKey =
 	| "azureApiVersion"
 	| "openRouterModelId"
 	| "openRouterModelInfo"
+	| "isDebugMode"
 
 export class XamunProviderState {
 	constructor(private context: vscode.ExtensionContext) {}
@@ -60,6 +61,7 @@ export class XamunProviderState {
 			customInstructions,
 			alwaysAllowReadOnly,
 			taskHistory,
+			isDebugMode,
 		] = await Promise.all([
 			this.getGlobalState("apiProvider") as Promise<ApiProvider | undefined>,
 			this.getGlobalState("apiModelId") as Promise<string | undefined>,
@@ -86,6 +88,7 @@ export class XamunProviderState {
 			this.getGlobalState("customInstructions") as Promise<string | undefined>,
 			this.getGlobalState("alwaysAllowReadOnly") as Promise<boolean | undefined>,
 			this.getGlobalState("taskHistory") as Promise<HistoryItem[] | undefined>,
+			this.getGlobalState("isDebugMode") as Promise<boolean | undefined>,
 		])
 
 		let apiProvider: ApiProvider
@@ -127,6 +130,7 @@ export class XamunProviderState {
 			customInstructions,
 			alwaysAllowReadOnly: alwaysAllowReadOnly ?? false,
 			taskHistory,
+			isDebugMode: isDebugMode ?? false,
 		}
 	}
 

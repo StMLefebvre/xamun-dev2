@@ -194,6 +194,10 @@ export class XamunProvider implements vscode.WebviewViewProvider {
 				}
 				await this.postStateToWebview()
 				break
+			case "setIsDebugMode":
+				await this.state.updateGlobalState("isDebugMode", message.value)
+				await this.postStateToWebview()
+				break
 			case "askResponse":
 				this.cline?.handleWebviewAskResponse(message.askResponse!, message.text, message.images)
 				break
@@ -467,7 +471,7 @@ export class XamunProvider implements vscode.WebviewViewProvider {
 	}
 
 	async getStateToPostToWebview() {
-		const { apiConfiguration, lastShownAnnouncementId, customInstructions, alwaysAllowReadOnly, taskHistory } =
+		const { apiConfiguration, lastShownAnnouncementId, customInstructions, alwaysAllowReadOnly, taskHistory, isDebugMode } =
 			await this.state.getState()
 		return {
 			version: this.context.extension?.packageJSON?.version ?? "",
@@ -478,6 +482,7 @@ export class XamunProvider implements vscode.WebviewViewProvider {
 			clineMessages: this.cline?.clineMessages || [],
 			taskHistory: (taskHistory || []).filter((item) => item.ts && item.task).sort((a, b) => b.ts - a.ts),
 			shouldShowAnnouncement: lastShownAnnouncementId !== this.latestAnnouncementId,
+			isDebugMode,
 		}
 	}
 
