@@ -70,7 +70,8 @@ const AppContent = () => {
 	}
 
 	return (
-		<>
+		<div style={{ padding: '0px', minHeight: '100vh', boxSizing: 'border-box' }}>
+			
 			{showWelcome ? (
 				<WelcomeView />
 			) : (
@@ -101,7 +102,7 @@ const AppContent = () => {
 					/>
 				</>
 			)}
-		</>
+		</div>
 	)
 }
 

@@ -39,6 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
 			outputChannel.appendLine("Plus button Clicked")
 			await sidebarProvider.clearTask()
 			await sidebarProvider.postStateToWebview()
+			// Use "chatButtonClicked" instead of "openChatPage"
 			await sidebarProvider.postMessageToWebview({ type: "action", action: "chatButtonClicked" })
 		})
 	)

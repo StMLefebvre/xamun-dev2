@@ -86,11 +86,6 @@
         "icon": "$(settings-gear)"
       },
       {
-        "command": "xamun-dev.chatButtonClicked",
-        "title": "Chat",
-        "icon": "$(comment-discussion)"
-      },
-      {
         "command": "xamun-dev.promptLibraryButtonClicked",
         "title": "Prompt Library",
         "icon": "$(library)"
@@ -129,13 +124,8 @@
           "when": "view == xamun-dev.SidebarProvider"
         },
         {
-          "command": "xamun-dev.chatButtonClicked",
-          "group": "navigation@5",
-          "when": "view == xamun-dev.SidebarProvider"
-        },
-        {
           "command": "xamun-dev.promptLibraryButtonClicked",
-          "group": "navigation@6",
+          "group": "navigation@5",
           "when": "view == xamun-dev.SidebarProvider"
         }
       ],
