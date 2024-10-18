@@ -71,6 +71,25 @@ const AppContent = () => {
 
 	return (
 		<div style={{ padding: '0px', minHeight: '100vh', boxSizing: 'border-box' }}>
+			<style>
+				{`
+					.chat-textarea-focused {
+						outline: none;
+					}
+					.chat-textarea-focused::after {
+						content: '';
+						position: absolute;
+						top: 10px;
+						left: 15px;
+						right: 15px;
+						bottom: 10px;
+						border: 1px solid purple;
+						border-radius: 2px;
+						pointer-events: none;
+						z-index: 4;
+					}
+				`}
+			</style>
 			
 			{showWelcome ? (
 				<WelcomeView />
